@@ -38,6 +38,12 @@
 - [x] git init patch-only（106 檔，無 binary/遊戲/ROM）
 - [x] **Windows mingw**：scummvm.exe（SCI+mt32emu，PE32+ 79MB→strip 18MB）建置成功
 - [x] **Windows patch + full 打包**（`tools/package_windows{,_patch}_lsl2.sh`）；full 含 RESOURCE+ROM、patch 零敏感檔 [HARD] 驗收 ✅。runtime 為 build-verified（同源於已驗證 Linux binary；Wine headless 本環境不穩，需真機驗）
-- [x] macOS workflow LSL2 化（名稱/patch 自動套 LSL2）— **ready**
-- [ ] **macOS CI 實跑**：需 push GitHub 觸發 Actions（依 rules/30 須使用者確認）→ 產 universal .app → 本機 Mac 注入 game/ROM + `修復.command` 驗
-- [ ] **git push GitHub Release**（patch 三平台）+ dist-all 保留本機（需使用者確認 remote/auth）
+- [x] **macOS CI 實跑成功**（tag `v1.0-macos` 觸發 run 29186837174 → universal .app + dmg/tar.gz artifact）
+- [x] **macOS patch** 下載 + [HARD] 驗收（0 RESOURCE/0 ROM）→ 加入 Release v1.0
+- [x] **macOS full** 本機注入（`tools/package_macos_full_lsl2.sh`）→ dist-all/macos（RESOURCE×6+ROM×2+修復.command）
+- [x] **git push** master 到 GitHub（wicanr2/leisure_suit_larry2-...）
+- [x] **GitHub Release v1.0** 三平台 patch 上架（Linux AppImage / Windows zip / macOS dmg+tar.gz）
+- [x] [HARD] 步驟四驗收：dist-all 三 full 含 RESOURCE、Release 三 patch 零 RESOURCE ✅
+
+## 唯一剩餘（你的 Mac 端一步）
+- [ ] macOS **full** 包（dist-all/macos）在你 Mac 上跑一次 `修復-macOS.command`（xattr 去隔離 + ad-hoc 重簽）再開 app 確認——Linux 端無法代 codesign/實測（引擎已 CI 驗、注入為機械步驟）
