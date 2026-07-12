@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 把 macOS CI(.github/workflows/build-macos.yml)產出的「空引擎」ScummVM.app,
-# 注入國王密使 IV 繁中資料(dist-cht/ 的 translation.tsv + qfg1_big5.fnt + qfg1_big5_hi.fnt)+ README,
+# 注入幻想空間II 繁中資料(dist-cht/ 的 translation.tsv + qfg1_big5.fnt + qfg1_big5_hi.fnt)+ README,
 # 重新打包成可交付檔。在 CI runner 內跑(bash 內建即可,不需 docker/python)。
 #
 # KQ4 只有單一 SCI0 EGA 版本(不像 QFG1/LSL1 要分 vga/ega),故不帶 edition 參數。
@@ -70,7 +70,7 @@ Roland MT-32 即可啟用（老 Sierra 遊戲原生支援 MT-32，音色遠勝 A
 交付原則
 --------
 中文化僅以 ScummVM patch 形式交付（引擎改動 + 中文資料），原遊戲資源與 ROM 不入包、不散布。
-repo：https://github.com/wicanr2/kq4-dos-cht.git
+repo：https://github.com/wicanr2/leisure_suit_larry2-goes-lookling-for-love-ega-cht.git
 EOF
 
 # 重簽:Resources 內容變動後,原本 build 期的 ad-hoc 簽章需要重蓋(--deep 涵蓋巢狀 dylib)
@@ -79,7 +79,7 @@ if command -v codesign >/dev/null 2>&1; then
 fi
 
 mkdir -p "$OUT"
-LABEL="KQ4-CHT-macos-universal"
+LABEL="LSL2-CHT-macos-universal"
 tar czf "$OUT/${LABEL}.tar.gz" -C "$(dirname "$APP")" "$(basename "$APP")"
 echo ">> -> $OUT/${LABEL}.tar.gz"
 

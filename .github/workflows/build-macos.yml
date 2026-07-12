@@ -96,7 +96,7 @@ jobs:
           [ "$SIZE" -gt 1000000 ] || { echo "### 疑似 shim,體積過小 ###"; exit 1; }
           otool -L "$RUNNER_TEMP/sdl-x86_64/lib/libSDL2-2.0.0.dylib" | grep -qi SDL3 && { echo "### 混入 SDL3 依賴 ###"; exit 1; } || true
 
-      - name: clone pinned ScummVM + 套 KQ4 中文化引擎 patch(兩份獨立 checkout,各自 build 一個弧,避免共用 build 目錄互相污染)
+      - name: clone pinned ScummVM + 套 LSL2 中文化引擎 patch(兩份獨立 checkout,各自 build 一個弧,避免共用 build 目錄互相污染)
         run: |
           set -euo pipefail
           UPSTREAM="$(cat patches/UPSTREAM_COMMIT.txt)"
@@ -204,13 +204,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$GITHUB_WORKSPACE/dist-macos"
-          tar czf "$GITHUB_WORKSPACE/dist-macos/KQ4-CHT-engine-macos-universal.tar.gz" ScummVM.app
+          tar czf "$GITHUB_WORKSPACE/dist-macos/LSL2-CHT-engine-macos-universal.tar.gz" ScummVM.app
 
       - name: 注入中文資料(tools/package_macos_data.sh)→ 產最終 .tar.gz + .dmg
         run: |
-          bash tools/package_macos_data.sh dist-macos/KQ4-CHT-engine-macos-universal.tar.gz dist-macos/out
+          bash tools/package_macos_data.sh dist-macos/LSL2-CHT-engine-macos-universal.tar.gz dist-macos/out
 
       - uses: actions/upload-artifact@v4
         with:
-          name: kq4-cht-macos
+          name: lsl2-cht-macos
           path: dist-macos/out/*

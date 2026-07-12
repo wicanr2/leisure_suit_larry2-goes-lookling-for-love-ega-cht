@@ -29,9 +29,14 @@
 - [ ] 決策：release 是否預設開 SCI_CP_BYPASS（player-friendly）或保持忠實（附電話簿）— 增量四定案
 - [ ] （選）F8 中英切換；（選）修 hi-res 選單殘影根因後可還原中文選單
 
-## 增量四（打包 + 驗收）— 待辦
-- [ ] 三平台雙軌：patch(→Release) + full(→本機 dist-all)
-- [ ] MT-32 enable 驗證（grep USE_MT32EMU）
-- [ ] 實機 playtest 驗收（過版權保護、進遊戲點 NPC）
-- [ ] README 圖文並茂 + 中文手冊要點索引
-- [ ] git init + push patch-only 到 GitHub repo
+## 增量四（打包 + 驗收）— 進行中
+- [x] MT-32 enable 驗證（`grep USE_MT32EMU config.h` = defined）
+- [x] **Linux AppImage full**（含遊戲+中文+MT-32 ROM）→ `dist-all/`，[HARD] 驗收含 RESOURCE.*+ROM ✅
+- [x] **Linux AppImage patch**（引擎+中文，不含遊戲/ROM）→ `out/release/`，[HARD] 驗收 0 RESOURCE/0 ROM ✅
+- [x] **實機驗收**：patch AppImage 經 extrapath + 自備遊戲 → in-game 中文旁白正確（`screenshots/m4-patch-ingame-narration.png`）
+- [x] README 圖文 + 中文手冊索引（`docs/manual-cht.md`）+ GLOSSARY
+- [x] git init patch-only（106 檔，無 binary/遊戲/ROM）
+- [~] **Windows mingw**：build/mingw-tree（SCI+mt32emu）建置中
+- [ ] Windows patch + full 打包（exe+DLL+cht，見 `tools/package_windows.sh`）
+- [ ] **macOS CI**：需 push GitHub + 觸發 Actions（`.github/workflows/build-macos.yml`）；push 依 rules/30 需使用者確認
+- [ ] git push 到 GitHub repo（需使用者確認 remote/auth）
