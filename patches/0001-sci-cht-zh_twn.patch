@@ -10,7 +10,7 @@
  #include "sci/resource/resource.h"
  #include "sci/engine/features.h"
  #include "sci/engine/kernel.h"
-@@ -57,16 +60,40 @@
+@@ -57,16 +60,43 @@
  	return argv[0];
  }
  
@@ -41,17 +41,20 @@
  		result = strcmp(s1.c_str(), s2.c_str());
  	}
 +
-+	// CHT dev hook: force LSL2 phone-number copy-protection to accept any input.
-+	// Gated on SCI_CP_BYPASS; only fires when an operand is a "555-dddd" answer,
-+	// a pattern used solely by the copy-protection screen.
-+	if (result != 0 && getenv("SCI_CP_BYPASS") &&
++	// CHT hook: force LSL2 phone-number copy-protection to accept any input.
++	// The Traditional Chinese release skips it by default (ZH_TWN) for a friendlier
++	// replay experience — the game quits after two wrong answers otherwise, and the
++	// phone book lives in the scanned manual. SCI_CP_BYPASS also enables it for the
++	// English/debug path. Only fires when an operand is a "555-dddd" answer, a pattern
++	// used solely by the copy-protection screen, so ordinary string compares are safe.
++	if (result != 0 && (g_sci->getLanguage() == Common::ZH_TWN || getenv("SCI_CP_BYPASS")) &&
 +			(chtLooksLikePhone(s1) || chtLooksLikePhone(s2)))
 +		result = 0;
 +
  	return make_reg(0, CLIP<int>(result, -32768, 32767));
  }
  
-@@ -207,6 +234,58 @@
+@@ -207,6 +237,58 @@
  }
  
  
@@ -110,7 +113,7 @@
  /*  Format(targ_address, textresnr, index_inside_res, ...)
  ** or
  **  Format(targ_address, heap_text_addr, ...)
-@@ -249,6 +328,20 @@
+@@ -249,6 +331,20 @@
  
  	int index = (startarg == 3) ? argv[2].toUint16() : 0;
  	Common::String source_str = g_sci->getKernel()->lookupText(position, index);
@@ -131,7 +134,7 @@
  	const char* source = source_str.c_str();
  
  	debugC(kDebugLevelStrings, "Formatting \"%s\"", source);
-@@ -260,6 +353,18 @@
+@@ -260,6 +356,18 @@
  	for (i = startarg; i < argc; i++)
  		arguments[i-startarg] = argv[i].toUint16(); /* Parameters are copied to prevent overwriting */
  
@@ -150,7 +153,7 @@
  	while ((xfer = *source++)) {
  		if (xfer == '%') {
  			if (mode == 1) {
-@@ -311,6 +416,17 @@
+@@ -311,6 +419,17 @@
  
  				Common::String tempsource = g_sci->getKernel()->lookupText(reg,
  				                                  arguments[paramindex + 1]);

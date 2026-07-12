@@ -48,7 +48,7 @@ cat > "$STAGE/README.txt" <<'TXT'
 
 MT-32 音源（推薦）：自備 MT-32 ROM 放入你的遊戲夾，音效選項選 Roland MT-32。
 
-版權保護（開場電話號碼問答）：對照手冊電話簿，或設環境變數 SCI_CP_BYPASS=1 略過。
+版權保護（開場電話號碼問答）：繁中版預設略過，輸入任意四碼即過關。
 
 repo：https://github.com/wicanr2/leisure_suit_larry2-goes-lookling-for-love-ega-cht
 TXT
