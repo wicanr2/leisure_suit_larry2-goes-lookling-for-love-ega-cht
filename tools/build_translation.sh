@@ -37,6 +37,6 @@ PY
 # 烘 16px 低解析 + runtime Big5 tsv
 python3 tools/build_cht.py "$OUT_UTF8" game --size 15
 # 烘 hi-res 32px
-python3 tools/bake_hires_font.py game/qfg1_big5_hi.fnt "$OUT_UTF8" --size 20 --height 24 --width 24
+python3 tools/bake_hires_font.py game/qfg1_big5_hi.fnt "$OUT_UTF8" --size 18 --height 20 --width 20
 echo "=== 產物 ==="
 ls -la game/translation.tsv game/qfg1_big5.fnt game/qfg1_big5_hi.fnt

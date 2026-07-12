@@ -33,16 +33,18 @@ namespace Sci {
 
 // Big5 font data file shipped alongside the game (part of the CHT patch).
 static const char *kChineseFontFile = "qfg1_big5.fnt";
-// Advance width of a Big5 char in logical 320x200 space. 14 (not the full 16) keeps the
-// Chinese a touch narrower so more fits per line and the text reads less bulky.
-static const int kBig5Width = 14;
+// Advance width of a Big5 char in logical 320x200 space. 10 gives a dense-but-readable
+// look: the 20px hi-res glyph box exactly fills the 20px display advance, so characters
+// sit close together while staying large enough to read comfortably.
+static const int kBig5Width = 10;
 
 // Hi-res Big5 font (own format, bake_hires_font.py): kHiW-px-wide, kHiH-row glyphs drawn
 // straight onto the 640x400 display buffer for sharp strokes under ZH_TWN upscaling.
-// kHiW <= kBig5Width*2 (=28) so glyphs never bleed into the next cell; kept an 8-multiple.
+// kHiW <= kBig5Width*2 (=20) so glyphs never bleed into the next cell. Row stride is
+// ceil(kHiW/8) bytes, so kHiW need not be a multiple of 8.
 static const char *kChineseHiResFontFile = "qfg1_big5_hi.fnt";
-static const int kHiW = 24;
-static const int kHiH = 24;
+static const int kHiW = 20;
+static const int kHiH = 20;
 
 GfxFontChinese::GfxFontChinese(ResourceManager *resMan, GfxScreen *screen, GuiResourceId resourceId)
 	: _screen(screen), _resourceId(resourceId), _big5(nullptr), _big5Height(14) {
@@ -70,7 +72,7 @@ bool GfxFontChinese::loadHiResFont() {
 	Common::File f;
 	if (!f.open(kChineseHiResFontFile))
 		return false;
-	const uint bytesPerGlyph = _hiH * (_hiW / 8);
+	const uint bytesPerGlyph = _hiH * ((_hiW + 7) / 8);
 	while (!f.eos()) {
 		uint16 code = f.readUint16BE();
 		if (f.eos() || code == 0xFFFF)
@@ -181,7 +183,7 @@ void GfxFontChinese::drawHiRes(uint16 point, int16 top, int16 left, byte color) 
 	if (it == _hiIndex.end())
 		return;
 	const byte *bmp = &_hiData[it->_value];
-	const int rowBytes = _hiW / 8;
+	const int rowBytes = (_hiW + 7) / 8;
 	const int dispLeft = left * 2;
 	const int dispTop = top * 2;
 	const int dispW = _screen->getDisplayWidth();
