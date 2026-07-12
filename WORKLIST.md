@@ -36,7 +36,8 @@
 - [x] **實機驗收**：patch AppImage 經 extrapath + 自備遊戲 → in-game 中文旁白正確（`screenshots/m4-patch-ingame-narration.png`）
 - [x] README 圖文 + 中文手冊索引（`docs/manual-cht.md`）+ GLOSSARY
 - [x] git init patch-only（106 檔，無 binary/遊戲/ROM）
-- [~] **Windows mingw**：build/mingw-tree（SCI+mt32emu）建置中
-- [ ] Windows patch + full 打包（exe+DLL+cht，見 `tools/package_windows.sh`）
-- [ ] **macOS CI**：需 push GitHub + 觸發 Actions（`.github/workflows/build-macos.yml`）；push 依 rules/30 需使用者確認
-- [ ] git push 到 GitHub repo（需使用者確認 remote/auth）
+- [x] **Windows mingw**：scummvm.exe（SCI+mt32emu，PE32+ 79MB→strip 18MB）建置成功
+- [x] **Windows patch + full 打包**（`tools/package_windows{,_patch}_lsl2.sh`）；full 含 RESOURCE+ROM、patch 零敏感檔 [HARD] 驗收 ✅。runtime 為 build-verified（同源於已驗證 Linux binary；Wine headless 本環境不穩，需真機驗）
+- [x] macOS workflow LSL2 化（名稱/patch 自動套 LSL2）— **ready**
+- [ ] **macOS CI 實跑**：需 push GitHub 觸發 Actions（依 rules/30 須使用者確認）→ 產 universal .app → 本機 Mac 注入 game/ROM + `修復.command` 驗
+- [ ] **git push GitHub Release**（patch 三平台）+ dist-all 保留本機（需使用者確認 remote/auth）
