@@ -538,8 +538,8 @@
 +	// CHT tooling: dump decompressed text/message/script resources as patch files
 +	// (uses ScummVM's own SCI decompressor). Triggered by SCI_DUMP_RES=<dir>; quits after.
 +	if (const char *dumpDir = getenv("SCI_DUMP_RES")) {
-+		const ResourceType dumpTypes[] = { kResourceTypeText, kResourceTypeMessage, kResourceTypeFont, kResourceTypeScript, kResourceTypeHeap, kResourceTypeView, kResourceTypePic };
-+		for (int ti = 0; ti < 7; ++ti) {
++		const ResourceType dumpTypes[] = { kResourceTypeText, kResourceTypeMessage, kResourceTypeFont, kResourceTypeScript, kResourceTypeHeap, kResourceTypeView, kResourceTypePic, kResourceTypeSound };
++		for (int ti = 0; ti < 8; ++ti) {
 +			Common::List<ResourceId> list = _resMan->listResources(dumpTypes[ti], -1);
 +			for (Common::List<ResourceId>::iterator it = list.begin(); it != list.end(); ++it) {
 +				Resource *r = _resMan->findResource(*it, 0);
