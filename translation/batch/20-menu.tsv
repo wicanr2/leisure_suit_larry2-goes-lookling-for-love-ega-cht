@@ -1,0 +1,21 @@
+# 選單 item/title 譯文（script.997，drawMenu 走 getChtTranslation）
+ File 	檔案
+ Action 	動作
+ Speed 	速度
+ Sound 	音效
+About LSL2	關於 LSL2
+Help	說明
+Save Game	儲存進度
+Restore Game	讀取進度
+Restart Game	重新開始
+Quit	離開
+Pause Game	暫停遊戲
+Inventory	道具欄
+Retype	重新輸入
+Boss Key	老闆鍵
+Filth Level	下流等級
+Trite Phrase	老套台詞
+Change...	變更…
+Faster	加快
+Normal	正常
+Slower	放慢

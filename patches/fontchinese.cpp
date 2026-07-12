@@ -33,14 +33,16 @@ namespace Sci {
 
 // Big5 font data file shipped alongside the game (part of the CHT patch).
 static const char *kChineseFontFile = "qfg1_big5.fnt";
-// Rendered glyph box: Big5Font glyphs are 16px wide (kChineseTraditionalWidth).
-static const int kBig5Width = 16;
+// Advance width of a Big5 char in logical 320x200 space. 14 (not the full 16) keeps the
+// Chinese a touch narrower so more fits per line and the text reads less bulky.
+static const int kBig5Width = 14;
 
-// Hi-res Big5 font (own format, bake_hires_font.py): 32px-wide, kHiH-row glyphs drawn
+// Hi-res Big5 font (own format, bake_hires_font.py): kHiW-px-wide, kHiH-row glyphs drawn
 // straight onto the 640x400 display buffer for sharp strokes under ZH_TWN upscaling.
+// kHiW <= kBig5Width*2 (=28) so glyphs never bleed into the next cell; kept an 8-multiple.
 static const char *kChineseHiResFontFile = "qfg1_big5_hi.fnt";
-static const int kHiW = 32;
-static const int kHiH = 28;
+static const int kHiW = 24;
+static const int kHiH = 24;
 
 GfxFontChinese::GfxFontChinese(ResourceManager *resMan, GfxScreen *screen, GuiResourceId resourceId)
 	: _screen(screen), _resourceId(resourceId), _big5(nullptr), _big5Height(14) {
@@ -129,9 +131,15 @@ void GfxFontChinese::draw(uint16 chr, int16 top, int16 left, byte color, bool gr
 	if (getenv("SCI_LOG_TOP") && top < 50)
 		warning("SCI_LOG_TOP big5 draw top=%d left=%d point=%04x", top, left, point);
 
+	// Menu bar / status row (top of screen): the hi-res path writes display-only pixels that
+	// the menu's visual-buffer restore can't clear, so Chinese menu titles would ghost/burn in.
+	// Route the top rows through the low-res path below (writes visual+display), which the
+	// normal redraw clears cleanly. In-game dialog text (top >> 8) still gets sharp hi-res.
+	const bool menuBar = (top < 8);
+
 	// Hi-res path: when ZH_TWN runs upscaled (640x400 display) and we have a hi-res glyph,
-	// draw sharp 32xN strokes directly onto the display instead of the blocky 2x low-res.
-	if (_screen->getDisplayWidth() > _screen->getWidth() && _hiIndex.contains(point)) {
+	// draw sharp strokes directly onto the display instead of the blocky 2x low-res.
+	if (!menuBar && _screen->getDisplayWidth() > _screen->getWidth() && _hiIndex.contains(point)) {
 		drawHiRes(point, top, left, color);
 		return;
 	}

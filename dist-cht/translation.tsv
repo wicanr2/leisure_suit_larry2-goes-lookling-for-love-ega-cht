@@ -2273,6 +2273,7 @@ Order A Hintbook	訂購提示手冊
 Al says:	艾爾說：
 Restore	恢復
 Restart	重新開始
+  Quit  	離開
 Yep; it's a door.	對，是扇門。
 And... it's locked.	而且……鎖住了。
 This door is locked.	這扇門鎖住了。
@@ -2307,18 +2308,20 @@ Give her your best line...	使出你最厲害的把妹台詞……
 Uh, I dunno.	呃，我不知道。
 Dialog	對話
 Controls	操控
-Normal	普通
-Cancel	 Cancel 
+Normal	正常
+Cancel	取消
 Gauge	量表
 Extra	擴展
-Sound	 Sound 
+Sound	音效
+  Save  	  儲存
 Replace	替換
 Select the game that you would like to restore.	選擇你想要讀取的遊戲。
 Type the description of this saved game.	輸入這個存檔遊戲的描述。
 This directory/disk can hold no more saved games. You must replace one of your saved games or use Change Directory to save on a different directory/disk.	這個目錄/磁碟已無法儲存更多遊戲。你必須替換其中一個存檔遊戲，或使用「改變目錄」在不同的目錄/磁碟上儲存。
 Restore a Game	讀取遊戲
 Save a Game	儲存遊戲
-Save	  Save  
+Save	  儲存
+ Cancel 	取消
 with:	使用：
 Cycle	循環
 Motion	動作
@@ -2332,8 +2335,11 @@ Change Directory	變更目錄
 You are carrying:	你身上帶著：
 You are carrying nothing!	你什麼也沒帶！
 Enter input	輸入資料
+ Action 	動作
+ Speed 	速度
+ Sound 	音效
 An Al Lowe Production	艾爾·洛製作
-Quit	  Quit  
+Quit	離開
 This game is paused.	遊戲已暫停。
 Ok. I'm back.	好，我回來了。
 Use the mouse or the left and right arrow keys to suit your taste.	用滑鼠或左右方向鍵調整成你喜歡的樣子。
@@ -2343,8 +2349,8 @@ Cleaner	更純潔
 Enter your favorite trite phrase:	輸入你最愛的老哏台詞：
 Use the mouse or the left and right arrow keys to select the speed of moving characters.	用滑鼠或左右方向鍵選擇角色移動速度。
 Animation Speed	動畫速度
-Faster	較快
-Slower	較慢
+Faster	加快
+Slower	放慢
 Use the mouse or the left and right arrow keys to adjust the volume.	用滑鼠或左右方向鍵調整音量。
 Sound Volume	音效音量
 Louder	較大聲
@@ -2354,3 +2360,16 @@ Collect	收集
 Script	指令檔
 Event	事件
 Timer	計時器
+ File 	檔案
+About LSL2	關於 LSL2
+Help	說明
+Save Game	儲存進度
+Restore Game	讀取進度
+Restart Game	重新開始
+Pause Game	暫停遊戲
+Inventory	道具欄
+Retype	重新輸入
+Boss Key	老闆鍵
+Filth Level	下流等級
+Trite Phrase	老套台詞
+Change...	變更…

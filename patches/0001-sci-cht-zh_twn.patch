@@ -268,6 +268,25 @@
  }
  
  // This one is the only one that updates screen!
+--- a/engines/sci/graphics/ports.cpp
++++ b/engines/sci/graphics/ports.cpp
+@@ -62,9 +62,13 @@
+ 	setPort(_menuPort);
+ 	_text16->SetFont(0);
+ 	_menuPort->rect = Common::Rect(0, 0, _screen->getScriptWidth(), _screen->getScriptHeight());
+-	_menuBarRect = Common::Rect(0, 0, _screen->getScriptWidth(), 9);
+-	_menuRect = Common::Rect(0, 0, _screen->getScriptWidth(), 10);
+-	_menuLine = Common::Rect(0, 9, _screen->getScriptWidth(), 10);
++	// CHT: Traditional Chinese menu titles are ~14px tall vs the stock 9px SCI menu bar,
++	// so they overflow below the bar and the status-line fillRect (which only clears the
++	// bar rect) leaves a ghost. Give ZH_TWN a taller bar so the full glyph fits and clears.
++	const int16 menuBarH = (g_sci->getLanguage() == Common::ZH_TWN) ? 15 : 9;
++	_menuBarRect = Common::Rect(0, 0, _screen->getScriptWidth(), menuBarH);
++	_menuRect = Common::Rect(0, 0, _screen->getScriptWidth(), menuBarH + 1);
++	_menuLine = Common::Rect(0, menuBarH, _screen->getScriptWidth(), menuBarH + 1);
+ 
+ 	_wmgrPort = new Port(1);
+ 	_windowsById.resize(2);
 --- a/engines/sci/graphics/screen.cpp
 +++ b/engines/sci/graphics/screen.cpp
 @@ -84,6 +84,14 @@
