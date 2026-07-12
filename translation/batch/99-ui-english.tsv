@@ -1,0 +1,9 @@
+# font-0 UI 元素保持英文（DrawStatus 不支援 Big5）
+ Score: %d of %d%15s Rank: %s%10s	 Score: %d of %d%15s Rank: %s%10s
+# 選單系統標題/項目保持英文（hi-res drawHiRes 直寫會殘影燒屏；ASCII 路徑乾淨）
+ Action 	 Action 
+ Speed 	 Speed 
+ Sound 	 Sound 
+  Quit  	  Quit  
+  Save  	  Save  
+ Cancel 	 Cancel 

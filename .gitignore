@@ -1,0 +1,37 @@
+# 遊戲原始資源（不散佈）
+game/
+extract/
+manual_cht/
+*.zip
+*.rar
+*.7z
+
+# 版權 ROM（絕不入庫）
+*.ROM
+
+# build 產物與完整包
+scummvm-src/
+build/
+dist-all/
+out/
+*.AppImage
+
+# 翻譯來源（batches/skeleton/converge/GLOSSARY）保留入庫——重derive成本高
+# 只排除大型中間產物
+translation/script_strings.json
+translation/chunks/
+copy_protection/loader/
+copy_protection/*.jpg
+copy_protection/*.png
+
+# 暫存
+*.pyc
+__pycache__/
+
+# build 工作目錄（正本在 dist-cht/）
+dist/
+
+# 打包工具二進位快取
+tools/.cache/
+out/picdump/
+out/*.ppm

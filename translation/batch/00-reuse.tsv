@@ -1,0 +1,106 @@
+# 前作 Sierra 通用 parser/系統回應複用（自動種子，逐條可再校）
+What do you want to inspect?	你想檢查什麼？
+"Hi."	「嗨。」
+"You're welcome."	「不客氣。」
+Climbing the walls already?	都已經無聊到想爬牆了喔？
+Whee!	耶！
+"HELP!"	"救人啦！"
+Sniff, sniff.	吸吸鼻子。
+"Ha, ha!"	"哈哈！"
+There's no time!	沒時間了！
+Don't whine!	別在那邊哀哀叫啦！
+You find nothing.	你什麼都沒找到。
+You can't. There's no key in this game!	不行啦，這遊戲根本沒有鑰匙這種東西！
+Same to you, buddy!	「彼此彼此，老兄！」
+Yeah, you probably would, too!	是啊，你可能也會這樣做！
+Obviously, restraint is no problem for you, Larry.	很明顯，「節制」對你來說根本不存在，賴瑞。
+That comes later.	那以後再說。
+Wouldn't you rather just remain friends?	你不覺得，我們還是當朋友就好嗎？
+Tsk, tsk.	嘖嘖。
+You have no reason to do that.	你沒理由那麼做。
+Where?	在哪？
+It just lies there, under your feet.	它就躺在你腳下。
+It's still up there!	它還在上面！
+It's just as it appears.	就是看起來那樣。
+It doesn't look interesting.	看起來沒什麼意思。
+To whom?	給誰？
+What do you want to give?	你想給什麼？
+It's not yours to give.	那不是你的東西，不能拿去送人。
+You already have it.	你已經擁有它了。
+It's of no use.	沒用的。
+You don't need it.	你用不著它。
+There's no reason to take it.	沒理由拿它。
+You can't do that now.	你現在不能這樣做。
+Ok, but I don't usually do that!	好啦，但我不常幹這種事！
+Ok.	 好的。 
+Not now!	現在不行！
+You're not close enough.	你離得不夠近。
+You already took it.	你已經拿走了。
+You see nothing special.	你沒看到什麼特別的東西。
+You don't have it.	你沒有。
+This is room %d.	這是第 %d 號房間。
+Ahhh.	啊。
+You don't have time for that.	你沒時間做那事。
+Where?!	哪裡？！
+It's not open.	它沒開。
+You'd better sit down first.	你最好先坐下來。
+It's just hanging around.	它就掛在那兒。
+(Drum fill)	（鼓聲）
+New save-game directory:	新的存檔目錄：
+%s is not a valid directory	%s 不是有效目錄
+You must type a description for the game.	你必須為遊戲輸入描述。
+File: %s	檔案：%s
+Your save game disk is full. You must either use another disk or save over an existing saved game.	你的存檔磁片已滿。你必須使用另一張磁片或覆蓋現有的存檔。
+That game was saved under a different interpreter. It cannot be restored.	該遊戲是用不同的直譯器存檔的。無法還原。
+I don't understand "%s".	我不懂「%s」。
+That doesn't appear to be a proper sentence.	這似乎不是適當的句子。
+That sentence doesn't make sense.	那句話沒有意義。
+You've left me responseless.	你讓我無言以對。
+Please insert your %s disk in drive %s.	請在 %s 磁碟機中插入你的 %s 軟碟。
+     DURING THE GAME: Click at the top of the screen or press ESC to use the menus. Additional shortcuts are shown there.       IN TYPING WINDOWS: Arrows, Home and End move the cursor, or click anywhere with the mouse. Ctrl-C clears the line.       IN DIALOG WINDOWS: Enter selects the outlined item, or click on items with the mouse. Tab and Shift-Tab move between choices. ESC always cancels. 	      遊戲進行中：點擊螢幕上方或按 ESC 開啟選單，選單中會顯示更多快捷鍵。       輸入視窗中：方向鍵、Home 和 End 可移動游標，也可用滑鼠點擊任意位置；Ctrl-C 可清除整行文字。       對話視窗中：Enter 選取框選項目，也可用滑鼠點擊項目；Tab 與 Shift-Tab 可在選項間切換；ESC 一律取消。
+%s [Collection of size %d]	%s [集合大小 %d]
+%s [List of size %d]	%s [列表大小 %d]
+%s [Set of size %d]	%s [集合大小 %d]
+Turn Off	關閉
+Turn On	開啟
+Restore	恢復
+Restart	重新開始
+  Quit  	離開
+Dialog	對話
+Controls	操控
+Normal	普通
+Cancel	取消
+Gauge	量表
+Extra	擴展
+Sound	音效
+  Save  	  儲存
+Replace	替換
+Select the game that you would like to restore.	選擇你想要讀取的遊戲。
+Type the description of this saved game.	輸入這個存檔遊戲的描述。
+This directory/disk can hold no more saved games. You must replace one of your saved games or use Change Directory to save on a different directory/disk.	這個目錄/磁碟已無法儲存更多遊戲。你必須替換其中一個存檔遊戲，或使用「改變目錄」在不同的目錄/磁碟上儲存。
+Restore a Game	讀取遊戲
+Save a Game	儲存遊戲
+with:	使用：
+Cycle	循環
+Motion	動作
+Wander	漫步
+Follow	跟隨
+Chase	追趕
+Avoid	迴避
+controls	控制設定
+Change Directory	變更目錄
+You are carrying:	你身上帶著：
+You are carrying nothing!	你什麼也沒帶！
+Enter input	輸入資料
+ Action 	 動作
+ Speed 	 速度 
+Animation Speed	動畫速度
+Faster	較快
+Slower	較慢
+Sound Volume	音效音量
+Louder	較大聲
+Softer	較小聲
+Collect	收集
+Script	指令檔
+Event	事件
+Timer	計時器
