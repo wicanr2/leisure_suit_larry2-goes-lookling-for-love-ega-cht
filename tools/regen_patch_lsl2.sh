@@ -8,6 +8,7 @@ SRC=scummvm-src
 PRIS=/tmp/lsl2_pristine
 FILES=(
   engines/sci/engine/kstring.cpp
+  engines/sci/engine/script_patches.cpp
   engines/sci/graphics/cache.cpp
   engines/sci/graphics/paint16.cpp
   engines/sci/graphics/ports.cpp

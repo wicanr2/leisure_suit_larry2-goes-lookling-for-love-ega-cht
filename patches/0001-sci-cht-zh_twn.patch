@@ -171,6 +171,56 @@
  				int slen = tempsource.size();
  				int extralen = strLength - slen;
  				assert((target - targetbuf) + extralen <= maxsize);
+--- a/engines/sci/engine/script_patches.cpp
++++ b/engines/sci/engine/script_patches.cpp
+@@ -9545,6 +9545,39 @@
+ 	PATCH_END
+ };
+ 
++// The airport ticket-hall bomb sequence is entered after bagScript in room 54
++// sets global[8a] to 2. rm52Script::changeState(1) then waits for its MoveTo
++// callback before beginning the evacuation. In the EGA release this callback
++// may never be delivered after the queued travellers have been removed, leaving
++// the player in the empty ticket hall at score 267. Start the already-existing
++// next state directly; it retains the warning, evacuation, explosion and the
++// subsequent ticket-purchase flow.
++// Applies to: English floppy EGA (including the zh_TWN overlay)
++// Responsible method: rm52Script::changeState(1)
++static const uint16 larry2SignatureAirportBombLobbySoftlock[] = {
++	SIG_MAGICDWORD,
++	0x38, 0xab, 0x00,              // pushi setMotion
++	0x39, 0x04,                    // pushi 04
++	0x51, 0x1f,                    // class MoveTo
++	0x36,                          // push
++	0x38, 0xff, 0x00,              // pushi 00ff
++	0x38, 0x81, 0x00,              // pushi pause
++	0x7c,                          // pushSelf
++	0x81, 0x00,                    // lag local[0]
++	0x4a, 0x0c,                    // send 0c
++	0x32, SIG_ADDTOOFFSET(+1), 0x05, // jmp state-handler exit
++	SIG_END
++};
++
++static const uint16 larry2PatchAirportBombLobbySoftlock[] = {
++	0x39, 0x72,                    // pushi changeState
++	0x78,                          // push1
++	0x39, 0x02,                    // pushi 02
++	0x54, 0x06,                    // self 06
++	0x32, 0x09, 0x00,              // jmp over the displaced MoveTo arguments
++	PATCH_END
++};
++
+ // When buying a lottery ticket, the message box "Processing..." is displayed
+ //  three times with no delay between the messages. In the original, each was
+ //  visibly erased before the next because the interpreter drew directly to the
+@@ -9598,6 +9631,7 @@
+ 
+ //          script, description,                                      signature                              patch
+ static const SciScriptPatcherEntry larry2Signatures[] = {
++	{  true,    52, "airport: bomb lobby evacuation softlock",     1, larry2SignatureAirportBombLobbySoftlock, larry2PatchAirportBombLobbySoftlock },
+ 	{  true,    63, "plane: no points for wearing parachute",      1, larry2SignatureWearParachutePoints,    larry2PatchWearParachutePoints },
+ 	{  true,    99, "disable speed test",                          1, sci0EarlySpeedTestSignature,           sci0EarlySpeedTestPatch },
+ 	{  true,    99, "disable speed test",                          1, sci01SpeedTestGlobalSignature,         sci01SpeedTestGlobalPatch },
 --- a/engines/sci/graphics/cache.cpp
 +++ b/engines/sci/graphics/cache.cpp
 @@ -30,6 +30,7 @@
